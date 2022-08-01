@@ -1,0 +1,156 @@
+// color-variables
+$player-red: #EB0202;
+$light-grey: rgba(216, 216, 216, 0.3);
+
+$borderRadious: 94px;
+
+.vjs-matrix {
+    height: 100vh !important;
+    position: relative;
+
+    &:focus {
+        &:not(:focus-visible) {
+            outline: 0
+        }
+    }
+
+    .vjs-control-bar {
+        height: 10.85rem;
+        background: rgba(0, 0, 0, 0.7);
+        display: block;
+        position: absolute;
+
+        .vjs-control{
+            height: fit-content;
+        }
+        
+
+        .vjs-volume-panel, .vjs-volume-panel.vjs-hover {
+            position: absolute;
+            bottom: 1.1rem;
+            left: 5.37rem;
+            font-size: 1.6em;
+            transition: none;
+
+            &:hover , &:focus, &:active {
+                transition: none !important;
+                // width: fit-content;
+                animation: none;
+                width: 6.75rem;
+                height: fit-content;
+                .vjs-volume-horizontal{
+                    width: 6.75rem;
+                    height: fit-content;
+                }
+            }
+
+            .vjs-volume-horizontal , .vjs-slider-horizontal {
+                outline: 0;
+                position: relative;
+                cursor: pointer;
+                padding: 0;
+                width: 6.75rem;
+                opacity: 1;
+                transition: none;
+                border-radius: $borderRadious;
+                animation: none;
+                &:hover , &:focus {
+                    transition: none !important;
+                    width: 6.75rem;
+                }
+                .vjs-volume-level{
+                    border-radius: $borderRadious;
+                    &:before{
+                        content: '';
+                        width: 0;
+                        height: 0;
+                    }
+                }
+            }
+        }
+
+        .vjs-fullscreen-control {
+            position: absolute;
+            right: 1.1rem;
+            bottom: 4.1rem;
+            font-size: 1.6em;
+        }
+
+
+        .vjs-play-control, .vjs-paused, .vjs-playing {
+            width: fit-content;
+            position: absolute;
+            top: 50%;
+            right: 50%;
+            transform: translate(-50px, -50px);
+            font-size: 3.5em;
+            &::before{
+                background: $light-grey;
+                padding: 20px;
+            }
+        }
+        
+        .vjs-current-time {
+            color: $player-red;
+            display: block;
+            position: absolute;
+            top: 3.56rem;
+            left: 1.56rem;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 23px;
+        }
+
+        .vjs-remaining-time {
+            position: absolute;
+            top: 3.56rem;
+            right: 1.56rem;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 23px;
+        }
+
+        /* ----------------------------- Progress Slider ---------------------------- */
+        .vjs-progress-control {
+            display: block;
+            height: fit-content;
+            width: 100%;
+
+            .vjs-progress-holder {
+                height: 1.56rem;
+                border-radius: $borderRadious;
+                margin: 0.9rem 1rem 0;
+                overflow: hidden;
+                
+                .vjs-slider {
+                    background-color: $light-grey;
+                }    
+
+                .vjs-load-progress  {
+                    border-radius: $borderRadious;
+                    background: $light-grey;
+                    div{
+                        border-radius: $borderRadious;
+                        background: $light-grey;
+                    }
+                }
+
+                //Mouse-cursor
+                .vjs-mouse-display {
+                    width: 0;
+                }
+
+                 .vjs-play-progress {
+                    border-radius: $borderRadious;
+                    background-color: $player-red;
+                    &::before {
+                        content: '';
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
