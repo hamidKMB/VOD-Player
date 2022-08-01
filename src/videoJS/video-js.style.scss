@@ -4,6 +4,23 @@ $light-grey: rgba(216, 216, 216, 0.3);
 
 $borderRadious: 94px;
 
+.vjs-matrix.vjs-fullscreen{
+    .vjs-control-bar{
+        .vjs-fullscreen-control{
+            .vjs-icon-placeholder {
+                &::before{
+                    content: '';
+                    background-image: url('../assets/icons/minScreen.svg');
+                    height: 25px;
+                    width: 25px;
+                    background-repeat: none;
+                    background-position: center;
+                }
+            }
+        }
+    }
+}
+
 .vjs-matrix {
     height: 100vh !important;
     position: relative;
@@ -13,6 +30,7 @@ $borderRadious: 94px;
             outline: 0
         }
     }
+
 
     .vjs-control-bar {
         height: 10.85rem;
@@ -24,6 +42,7 @@ $borderRadious: 94px;
             height: fit-content;
         }
 
+        /* ----------------------------  Custom Buttons --------------------------- */
         .vjs-custom-button {
                 height: 27px;
                 width: 28px;
@@ -48,6 +67,25 @@ $borderRadious: 94px;
                 right: 5.5rem;
         }
 
+        .vjs-fullscreen-control {
+            position: absolute;
+            right: 1.1rem;
+            bottom: 3.5rem;
+            .vjs-icon-placeholder {
+                &:before {
+                    content: '';
+                    background-image: url('../assets/icons/fullscreen.svg');
+                    height: 27px;
+                    width: 27px;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+            }
+
+        } 
+
+        /* ------------------------------- Volume bar ------------------------------- */
         .vjs-volume-panel, .vjs-volume-panel.vjs-hover {
             position: absolute;
             bottom: 1.1rem;
@@ -64,6 +102,51 @@ $borderRadious: 94px;
                 .vjs-volume-horizontal{
                     width: 6.75rem;
                     height: fit-content;
+                }
+            }
+
+            .vjs-vol-0 {
+                .vjs-icon-placeholder{
+                    &:before{
+                        content: '';
+                        background-image: url('../assets/icons/Volume\ Off.svg');
+                        height: 2rem;
+                        width: 2rem;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        margin: 8px 35px;
+                    }
+                }
+            }
+
+            .vjs-vol-1, .vjs-vol-2 {
+                .vjs-icon-placeholder{
+                    &:before{
+                        content: '';
+                        background-image: url('../assets/icons/Volume\ Down.svg');
+                        height: 1.7rem;
+                        width: 1.7rem;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        margin: 11px 35px;
+                    }
+                }
+            }
+
+            .vjs-vol-3 {
+                .vjs-icon-placeholder{
+                    &:before{
+                        content: '';
+                        background-image: url('../assets/icons/Volume\ Up.svg');
+                        height: 2rem;
+                        width: 2rem;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        margin: 8px 30px;
+                    }
                 }
             }
 
@@ -92,24 +175,44 @@ $borderRadious: 94px;
             }
         }
 
-        .vjs-fullscreen-control {
-            position: absolute;
-            right: 1.1rem;
-            bottom: 4.1rem;
-            font-size: 1.6em;
-        }
 
-
-        .vjs-play-control, .vjs-paused, .vjs-playing {
-            width: fit-content;
+        /* --------------------------- Play-Pause Buttons --------------------------- */
+        .vjs-play-control, .vjs-playing, .vjs-paused {
             position: absolute;
-            top: 50%;
+            top: 38%;
             right: 50%;
-            transform: translate(-50px, -50px);
-            font-size: 3.5em;
-            &::before{
-                background: $light-grey;
-                padding: 20px;
+            // transform: translate(-50px, -50px);
+            height: 70px;
+            width: 70px;
+            background: $light-grey;
+            border-radius: 50%;
+        }
+        .vjs-play-control.vjs-playing{
+            .vjs-icon-placeholder{
+                &::before{
+                    content: '';
+                    background-image: url('../assets/icons/stop-button.svg');
+                    height: 50px;
+                    width: 50px;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    margin: 10px 12px;
+                }
+            }
+        }
+        .vjs-play-control.vjs-paused{
+            .vjs-icon-placeholder{
+                &::before{
+                    content: '';
+                    background-image: url('../assets/icons/Play-Button.svg');
+                    height: 50px;
+                    width: 50px;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    margin: 10px 12px;
+                }
             }
         }
         
