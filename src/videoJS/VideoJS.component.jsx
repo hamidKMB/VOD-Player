@@ -78,6 +78,11 @@ const VideoJS = (props) => {
         player.getChild("ControlBar").addChild("PlaylistButton", {}, 3);
       }
 
+      // player
+      //   .getChild("ControlBar")
+      //   .getChild("FullscreenToggle")
+      //   .addClass("vjs-custom-button")
+
       // You could update an existing player in the `else` block here
       // on prop change, for example:
     } else {
@@ -103,7 +108,7 @@ const VideoJS = (props) => {
     <div data-vjs-player>
       <video
         ref={videoRef}
-        className="video-js vjs-matrix  vjs-big-play-centered"
+        className="video-js vjs-matrix vjs-big-play-centered"
       />
     </div>
   );
