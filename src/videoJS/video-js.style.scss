@@ -23,7 +23,30 @@ $borderRadious: 94px;
         .vjs-control{
             height: fit-content;
         }
-        
+
+        .vjs-custom-button {
+                height: 27px;
+                width: 28px;
+                background-size: contain;
+                background-position: center;
+                background-repeat: no-repeat;
+                position: absolute;
+                cursor: pointer;
+                z-index: 1;
+        }
+
+        .vjs-settings-button{
+                background-image: url('../assets/icons/Setting.svg');
+                bottom: 1.8rem;
+                left: 2.5rem;
+        }
+
+        .vjs-playlist-button{
+
+                background-image: url('../assets/icons/list-play.svg');
+                bottom: 1.8rem;
+                right: 5.5rem;
+        }
 
         .vjs-volume-panel, .vjs-volume-panel.vjs-hover {
             position: absolute;
@@ -152,5 +175,11 @@ $borderRadious: 94px;
                 }
             }
         }
+    }
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
     }
 }

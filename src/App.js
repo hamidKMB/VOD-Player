@@ -1,9 +1,6 @@
 import React, { useRef } from "react";
 import VideoJS from "./videoJS/VideoJS.component";
-// import videojs from "video.js";
 import "./App.css";
-import VideoPlayer from "./videoJS/VideoJsClassComponent";
-import Button from "./Components/Button/Button";
 
 function App() {
   const playerRef = useRef(null);
@@ -38,7 +35,7 @@ function App() {
   const handlePlayerReady = (player) => {
     playerRef.current = player;
 
-    console.dir(playerRef.current.children_[6].volumePanel);
+    console.dir(playerRef.current);
 
     // You can handle player events here, for example:
     player.on("waiting", () => {
@@ -53,16 +50,7 @@ function App() {
   return (
     <div style={{ minHeight: "100vh", position: "relative" }}>
       <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
-      <Button
-        icon="Settings"
-        positionPlacement={{ bottom: "1.1rem", left: "1.1rem", color: "#fff" }}
-      />
-      <Button
-        icon="Episodes"
-        positionPlacement={{ bottom: "1.1rem", right: "3.1rem", color: "#fff" }}
-      />
     </div>
-    // <VideoPlayer {...videoJsOptions} />
   );
 }
 
