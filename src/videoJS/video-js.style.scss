@@ -271,7 +271,12 @@ $borderRadious: 94px;
             width: 100%;
 
             &:hover{
-                
+                .vjs-play-progress {
+                    .vjs-time-tooltip{
+                        display: none;
+                    }
+                }
+
                 .vjs-mouse-display{
                     .vjs-time-tooltip{
                         top: -7.5rem !important;
