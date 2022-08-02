@@ -86,7 +86,9 @@ const VideoJS = (props) => {
           this.addClass("vjs-next-button");
         },
         handleClick: function () {
-          console.log("Next button clicked");
+          //direct user to new url
+          console.log("clicked next button");
+          window.location.href = "http://localhost:3000/";
         },
       });
 
@@ -107,6 +109,7 @@ const VideoJS = (props) => {
         },
         handleClick: function () {
           console.log("Prevcious button clicked");
+          window.location.href = "http://localhost:3000/";
         },
       });
 
@@ -127,6 +130,7 @@ const VideoJS = (props) => {
         },
         handleClick: function () {
           console.log("Fast forward button clicked");
+          player.currentTime(player.currentTime() + 30);
         },
       });
 
@@ -147,6 +151,7 @@ const VideoJS = (props) => {
         },
         handleClick: function () {
           console.log("Fast rewind button clicked");
+          player.currentTime(player.currentTime() - 15);
         },
       });
 
