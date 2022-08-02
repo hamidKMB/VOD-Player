@@ -1,0 +1,19 @@
+.box{
+    height: 339px;
+    width: 380px;
+    border-radius: 10px;
+    background: rgba(43, 40, 40, 0.72);
+    backdrop-filter: blur(15px);
+    position: absolute;
+    z-index: 9;
+}
+
+.box-settings {
+    bottom: 4.555rem;
+    left: 1.43rem;
+}
+
+.box-playlist {
+    bottom: 4.555rem;
+    right: 1.98rem;
+}
