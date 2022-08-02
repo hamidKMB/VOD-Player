@@ -67,6 +67,32 @@ $borderRadious: 94px;
                 right: 5.5rem;
         }
 
+        .vjs-next-button{
+            background-image: url('../assets/icons/next.svg');
+            bottom: 3.5rem;
+            right: 45%;
+        }
+
+        .vjs-previous-button{
+            background-image: url('../assets/icons/Privious.svg');
+            bottom: 3.5rem;
+            left: 41%;
+        }
+
+        .vjs-fast-forward-button{
+            background-image: url('../assets/icons/ff.svg');
+            bottom: 3.5rem;
+            right: 40%;
+        }
+
+        .vjs-fast-rewind-button{
+            background-image: url('../assets/icons/bb.svg');
+            bottom: 3.5rem;
+            left: 36%;
+        }
+
+        /* ------------------------------- Fullscreen ------------------------------- */
+
         .vjs-fullscreen-control {
             position: absolute;
             right: 1.1rem;
@@ -244,11 +270,24 @@ $borderRadious: 94px;
             height: fit-content;
             width: 100%;
 
+            &:hover{
+                
+                .vjs-mouse-display{
+                    .vjs-time-tooltip{
+                        top: -7.5rem !important;
+                        width: 9.375rem !important;
+                        height: 5.625rem !important;
+                        border-radius: 5px;
+                        //TODO: the time Display must be on top of the tooltip
+                    }
+                }
+            }
+
             .vjs-progress-holder {
                 height: 1.56rem;
                 border-radius: $borderRadious;
                 margin: 0.9rem 1rem 0;
-                overflow: hidden;
+                // overflow: hidden;
                 
                 .vjs-slider {
                     background-color: $light-grey;
@@ -261,11 +300,6 @@ $borderRadious: 94px;
                         border-radius: $borderRadious;
                         background: $light-grey;
                     }
-                }
-
-                //Mouse-cursor
-                .vjs-mouse-display {
-                    width: 0;
                 }
 
                  .vjs-play-progress {
