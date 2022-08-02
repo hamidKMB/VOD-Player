@@ -1,17 +1,16 @@
 import ReactDOM from "react-dom";
-import ExampleReactComponent from "./SampleComponent";
+
 import videojs from "video.js";
+import Box from "./Box.component";
 
 const VjsComponent = videojs.getComponent("Component");
 
-export default class ExampleVjsBridgeComponent extends VjsComponent {
+class BoxVjs extends VjsComponent {
   constructor(player, options) {
     super(player, options);
-
+    console.log(player, options);
     // Bind the current class context to the mountReactComponent method
     this.mountReactComponent = this.mountReactComponent.bind(this);
-
-    console.log("Hello World");
 
     // When player is ready, call method to mount the React component
     player.ready(() => this.mountReactComponent());
@@ -23,15 +22,8 @@ export default class ExampleVjsBridgeComponent extends VjsComponent {
   // This method renders the ExampleReactComponent into the DOM element of
   // the Video.js component, `this.el()`.
   mountReactComponent() {
-    ReactDOM.render(
-      <ExampleReactComponent vjsBridgeComponent={this} />,
-      this.el()
-    );
+    ReactDOM.render(<Box vjsBridgeComponent={this} />, this.el());
   }
 }
 
-// Make sure to register the Video.js component so Video.js knows it exists
-videojs.registerComponent(
-  "exampleVjsBridgeComponent",
-  ExampleVjsBridgeComponent
-);
+export default BoxVjs;

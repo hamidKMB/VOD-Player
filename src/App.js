@@ -26,8 +26,8 @@ function App() {
     },
     sources: [
       {
-        src: "//vjs.zencdn.net/v/oceans.mp4",
-        type: "video/mp4",
+        src: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8",
+        // type: "video/mp4",
       },
     ],
   };

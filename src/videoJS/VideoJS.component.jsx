@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import "video.js/dist/video-js.css";
 import "./video-js.style.scss";
 import "videojs-thumbnail-sprite";
+import BoxVjs from "../Components/Box/BoxVjs.bridgeComponent";
+import PlaylistVjsBox from "../Components/Playlist-box/PlaylistVjs.bridge";
 
 const VideoJS = (props) => {
   /* ---------------------------------- Props --------------------------------- */
@@ -14,13 +16,11 @@ const VideoJS = (props) => {
   const videoRef = useRef(null);
   const playerRef = useRef(null);
 
-  console.log({
-    videoRef: videoRef.current,
-    playerRef: playerRef.current,
-    options,
-  });
-
-  console.log(!playerRef.current);
+  /* -------------------------------- Functions ------------------------------- */
+  const isChildExist = (array, idOfChild) => {
+    const isExist = array.findIndex((item) => item.id_ === idOfChild) > 0;
+    return isExist;
+  };
 
   /* --------------------------------- Effects -------------------------------- */
   useEffect(() => {
@@ -38,6 +38,8 @@ const VideoJS = (props) => {
 
       // Adding some New Buttons to Control bar
       let Button = videojs.getComponent("button");
+      videojs.registerComponent("boxVjs", BoxVjs);
+      videojs.registerComponent("playlistBoxVjs", PlaylistVjsBox);
 
       let SettingsButton = videojs.extend(Button, {
         constructor: function (player, options) {
@@ -46,7 +48,17 @@ const VideoJS = (props) => {
           this.addClass("vjs-settings-button");
         },
         handleClick: function () {
-          console.log("Settings button clicked");
+          if (
+            !isChildExist(player.getChild("controlBar").children_, "boxVjs")
+          ) {
+            player
+              .getChild("ControlBar")
+              .addChild("boxVjs", { id: "boxVjs" }, 10);
+          } else {
+            player
+              .getChild("ControlBar")
+              .removeChild("boxVjs", { id: "boxVjs" }, 10);
+          }
         },
       });
 
@@ -66,7 +78,18 @@ const VideoJS = (props) => {
           this.addClass("vjs-playlist-button");
         },
         handleClick: function () {
-          console.log("Playlist button clicked");
+          if (
+            !isChildExist(
+              player.getChild("controlBar").children_,
+              "playlistBoxVjs"
+            )
+          ) {
+            player
+              .getChild("ControlBar")
+              .addChild("playlistBoxVjs", { id: "playlistBoxVjs" }, 8);
+          } else {
+            player.getChild("ControlBar").removeChild("playlistBoxVjs", {}, 8);
+          }
         },
       });
 
@@ -87,7 +110,7 @@ const VideoJS = (props) => {
         },
         handleClick: function () {
           //direct user to new url
-          console.log("clicked next button");
+
           window.location.href = "http://localhost:3000/";
         },
       });
@@ -108,7 +131,6 @@ const VideoJS = (props) => {
           this.addClass("vjs-previous-button");
         },
         handleClick: function () {
-          console.log("Prevcious button clicked");
           window.location.href = "http://localhost:3000/";
         },
       });
@@ -129,7 +151,6 @@ const VideoJS = (props) => {
           this.addClass("vjs-fast-forward-button");
         },
         handleClick: function () {
-          console.log("Fast forward button clicked");
           player.currentTime(player.currentTime() + 30);
         },
       });
@@ -150,7 +171,6 @@ const VideoJS = (props) => {
           this.addClass("vjs-fast-rewind-button");
         },
         handleClick: function () {
-          console.log("Fast rewind button clicked");
           player.currentTime(player.currentTime() - 15);
         },
       });
@@ -175,6 +195,28 @@ const VideoJS = (props) => {
           },
         ],
       });
+
+      // handle keyboard shortcuts
+      //TODO: Fix the Shortcuts
+      // player.on("keydown", (event) => {
+      //   console.log(event.key);
+      //   if (event.key === " ") {
+      //     //toggle play/pause
+      //     player.paused() ? player.play() : player.pause();
+      //   }
+      //   if (event.key === "ArrowLeft") {
+      //     player.currentTime(player.currentTime() - 15);
+      //   }
+      //   if (event.key === "ArrowRight") {
+      //     player.currentTime(player.currentTime() + 15);
+      //   }
+      //   if (event.key === "ArrowUp") {
+      //     player.volume(player.volume() + 0.1);
+      //   }
+      //   if (event.key === "ArrowDown") {
+      //     player.volume(player.volume() - 0.1);
+      //   }
+      // });
 
       // You could update an existing player in the `else` block here
       // on prop change, for example:
