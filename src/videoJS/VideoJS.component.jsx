@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import "video.js/dist/video-js.css";
 import "./video-js.style.scss";
 import "videojs-thumbnail-sprite";
+import "videojs-contrib-quality-levels";
 import BoxVjs from "../Components/Box/BoxVjs.bridgeComponent";
 import PlaylistVjsBox from "../Components/Playlist-box/PlaylistVjs.bridge";
 
@@ -195,6 +196,12 @@ const VideoJS = (props) => {
           },
         ],
       });
+
+      player.qualityLevels();
+
+      // player.({
+      //   displayCurrentQuality: true,
+      // });
 
       // handle keyboard shortcuts
       //TODO: Fix the Shortcuts

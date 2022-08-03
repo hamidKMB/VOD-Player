@@ -212,6 +212,18 @@ $borderRadious: 94px;
             width: 70px;
             background: $light-grey;
             border-radius: 50%;
+            .vjs-icon-placeholder {
+                &::before{
+                        content: '';
+                        background-image: url('../assets/icons/Play-Button.svg');
+                        height: 50px;
+                        width: 50px;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        margin: 10px 12px;
+                    }
+            }
         }
         .vjs-play-control.vjs-playing{
             .vjs-icon-placeholder{
