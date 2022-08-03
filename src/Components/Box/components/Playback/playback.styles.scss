@@ -1,0 +1,31 @@
+.playback-title {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-align: left;
+    margin: 0;
+}
+
+.range-picker {
+    width: 95%;
+    margin: 0.5rem;
+    &::-moz-range-track {
+        background-color: red;
+    }
+    &::-moz-range-thumb{
+        background-color: #fff;
+    } 
+    &::-ms-track{
+        background-color: aqua;
+    }
+    &::-ms-fill-lower {
+        background-color: blueviolet;
+    }
+    &::-ms-fill-upper{
+        background-color: coral;
+    }
+    &::-ms-thumb{
+        background-color: gold;
+    }
+}
+
