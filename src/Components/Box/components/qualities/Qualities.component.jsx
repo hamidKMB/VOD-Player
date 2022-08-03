@@ -7,8 +7,6 @@ const Qualities = (props) => {
 
   const [qualities, setQualities] = useState([]);
 
-  console.log(player.qualityLevels().levels_);
-
   const handleSelectQuality = (selectedQualityIndex, selectedQualityId) => {
     setQualities(
       qualities.map((item) => ({
