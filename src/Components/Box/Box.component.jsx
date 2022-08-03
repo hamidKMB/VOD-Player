@@ -3,6 +3,7 @@ import "../Styles/box.styles.scss";
 import InformationBoxes from "./components/Info-boxes/InformationBoxes";
 // import PlaybackSpeed from "./components/Playback/PlaybackSpeed.component";
 import Qualities from "./components/qualities/Qualities.component";
+import Subtitle from "./components/subtitles/Subtitle.component";
 
 const Box = (props) => {
   const player = props.vjsBridgeComponent.player();
@@ -37,7 +38,11 @@ const Box = (props) => {
         />
       ) : selected.boxTitle === "Qualities" ? (
         <Qualities player={player} handleBack={handleBack} />
-      ) : null}
+      ) : (
+        selected.boxTitle === "Subtitles" && (
+          <Subtitle handleBack={handleBack} player={player} />
+        )
+      )}
     </div>
   );
 };
