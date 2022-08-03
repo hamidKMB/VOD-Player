@@ -1,14 +1,10 @@
 import React, { useState } from "react";
+import InformationBox from "../info-box/InformationBox.component";
 import "../Styles/box.styles.scss";
+import PlaybackSpeed from "./components/Playback/PlaybackSpeed.component";
 
 const Box = (props) => {
   const player = props.vjsBridgeComponent;
-
-  const [first, setfirst] = useState("hello world");
-
-  const change = () => {
-    setfirst("hello world 2");
-  };
 
   console.log({
     bridgeComponent: player,
@@ -16,9 +12,10 @@ const Box = (props) => {
   });
 
   return (
-    <div className="box box-settings" style={{ textAlign: "center" }}>
-      <h1>{first}</h1>
-      <button onClick={change}>Change</button>
+    <div className="box box-settings">
+      {/*TODO: Playback Speed component not completed */}
+      {/* <PlaybackSpeed /> */}
+      <InformationBox boxTitle="Qualities" selectedValue="720p" />
     </div>
   );
 };
