@@ -3,12 +3,22 @@ import PropTypes from "prop-types";
 import "./information-box.styles.scss";
 
 const InformationBox = (props) => {
-  const { boxTitle, selectedValue } = props;
+  /* ---------------------------------- Props --------------------------------- */
+  const { boxTitle, selectedValue, onClickMore } = props;
+
   return (
     <div className="info-box-holder">
       <span className="info-box-title">{boxTitle}</span>
-      <div className="info-box-selected-value">{selectedValue}</div>
-      <span className="info-box-arrow-right" />
+      <div
+        className="info-box-selected-value"
+        onClick={() => onClickMore({ selectedValue, boxTitle })}
+      >
+        {selectedValue}
+        <div
+          className="info-box-arrow-right"
+          onClick={() => onClickMore({ selectedValue, boxTitle })}
+        />
+      </div>
     </div>
   );
 };

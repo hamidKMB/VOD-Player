@@ -1,7 +1,10 @@
+@import '../../videoJS/video-js.style.scss';
+
 .info-box-holder{
     display: flex;
     flex-direction: row;
     padding: 10px 15px;
+    position: relative;
     align-items: center;
     .info-box-title{
         font-weight: bold;
@@ -10,15 +13,28 @@
     }
     .info-box-selected-value{
         font-size: medium;
-    }
-    
-    .info-box-arrow-right{
-        margin-left: 7px;
-        background-image: url('../../assets/icons/Arrow\ -\ Right\ 2.svg');
-        background-position: center;
-        background-size: contain;
-        background-repeat: no-repeat;
-        width: 20px;
-        height: 20px;
+        display: inline-flex;
+        cursor: pointer;
+        padding: 10px;
+        padding-right: 0;
+        align-items: center;
+        .info-box-arrow-right{
+            display: inline-block;
+            cursor: pointer;
+            background-image: url('../../assets/icons/Arrow\ -\ Right\ 2.svg');
+            width: 30px;
+            height: 20px;
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            padding: 10px 0;
+        }
+        transition: all 0.2s ease-in-out;
+
+        &:hover{
+            text-shadow: 0 0 5px #fff;
+            background-color: $light-grey;
+            border-radius: 5px;
+        }
     }
 }
