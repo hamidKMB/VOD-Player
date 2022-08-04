@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import InformationBox from "../../../info-box/InformationBox.component";
 
 const InformationBoxes = ({ handleSelect, handleClickBack, player }) => {
-  console.log(player.qualityLevels().selectedIndex_);
-
+  // Detect selected Quality
   const selectedQualityIndex = player.qualityLevels().selectedIndex_;
   const selectedQualityTitle = `${
     player.qualityLevels().levels_[selectedQualityIndex].height
   }p`;
+
+  // Detect selected subtitle
+  const selectedSubtitle = useRef(null);
+
+  for (let index = 0; index < player.textTracks().tracks_.length; index++) {
+    const { label, mode, kind } = player.textTracks()[index];
+
+    if (mode === "showing" && kind === "subtitles") {
+      selectedSubtitle.current = label;
+    }
+  }
 
   return (
     <React.Fragment>
@@ -19,7 +29,7 @@ const InformationBoxes = ({ handleSelect, handleClickBack, player }) => {
       />
       <InformationBox
         boxTitle="Subtitles"
-        selectedValue="English"
+        selectedValue={selectedSubtitle.current}
         onClickMore={(selected) => handleSelect(selected)}
       />
     </React.Fragment>

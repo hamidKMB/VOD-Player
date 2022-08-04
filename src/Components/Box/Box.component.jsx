@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../Styles/box.styles.scss";
 import InformationBoxes from "./components/Info-boxes/InformationBoxes";
 // import PlaybackSpeed from "./components/Playback/PlaybackSpeed.component";
@@ -14,8 +14,6 @@ const Box = (props) => {
     setSelected(null);
   };
 
-  console.log(player.qualityLevels().levels_);
-
   // useEffect(() => {
   //   if (selected?.boxTitle === "Qualities") {
   //     setQualities(
@@ -23,8 +21,6 @@ const Box = (props) => {
   //     );
   //   }
   // }, [selected]);
-
-  console.log(selected);
 
   return (
     <div className="box box-settings">
