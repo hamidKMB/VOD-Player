@@ -7,12 +7,24 @@ const Subtitle = (props) => {
 
   const [subtitle, setSubtitle] = useState([]);
 
-  console.log(player.textTracks());
+  let tracks = player.textTracks();
+
+  const handleSelectSubtitle = (trackId) => {
+    const newSubtitleArray = subtitle.map((item, index) => {
+      let track = tracks[index];
+      track.mode = track.id === trackId ? "showing" : "disabled";
+      return {
+        ...item,
+        mode: trackId === item.id ? "showing" : "disabled",
+        selected: trackId === item.id,
+      };
+    });
+
+    setSubtitle(newSubtitleArray);
+  };
 
   useEffect(() => {
     if (player) {
-      let tracks = player.textTracks();
-
       const subtitleTracks = [];
 
       for (let index = 0; index < tracks.tracks_.length; index++) {
@@ -29,12 +41,10 @@ const Subtitle = (props) => {
         });
       }
 
-      console.log(subtitleTracks);
-
       setSubtitle(
         subtitleTracks.map((item, index) => ({
           ...item,
-          selected: index === player.textTracks().selectedIndex_,
+          selected: item.mode === "showing",
         }))
       );
     }
@@ -48,27 +58,21 @@ const Subtitle = (props) => {
         <h1>Subtitles/cc ({subtitle.length})</h1>
       </div>
       <div className="subtitle-box-holder">
-        {subtitle.map((item, index) => {
-          console.log(item);
-          return (
-            <div
-              className={`subtitle-box ${
-                item.selected ? "selected-subtitle" : ""
-              }`}
-              key={index}
-              onClick={() => {
-                // player.textTracks().selectedIndex_ = index;
-                // player.textTracks().trigger({
-                //   type: "change",
-                //   selectedIndex: index,
-                // });
-                console.log("hello");
-              }}
-            >
-              {item.label}
-            </div>
-          );
-        })}
+        {subtitle
+          .filter((item) => item.kind !== "metadata")
+          .map((item, index) => {
+            return (
+              <div
+                className={`subtitle-box ${
+                  item.selected ? "selected-subtitle" : ""
+                }`}
+                key={index}
+                onClick={() => handleSelectSubtitle(item.id)}
+              >
+                {item.label}
+              </div>
+            );
+          })}
       </div>
     </React.Fragment>
   );

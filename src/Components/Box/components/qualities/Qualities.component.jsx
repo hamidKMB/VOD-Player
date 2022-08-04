@@ -33,8 +33,6 @@ const Qualities = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(qualities.map((item) => item.selected === true));
-
   return (
     <div>
       <div className="head-details">
