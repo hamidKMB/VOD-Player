@@ -5,6 +5,7 @@
     align-items: center;
     flex-wrap: wrap;
     .subtitle-box {
+        transition: all 0.3s ease-in-out;
         padding: 7px 18px;
         background: rgba(255, 255, 255, 0.9);
         margin: 8px;
@@ -29,6 +30,7 @@
     }
 
     .selected-subtitle{
+        transition: all 0.3s ease-in-out;
         background: linear-gradient(46deg, #960000 14.64%, #EF0000 85.36%) !important;
         color: #fff
     }
@@ -50,5 +52,23 @@
         padding: 10px 0;
         margin-right: 10px;
         cursor: pointer;
+    }
+}
+
+.check-disable-subtitle-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    margin-top: 30px;
+    .title{
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        font-size: 16px;
+        line-height: 16px;
+        margin-right: 10px;
     }
 }
