@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "./subtitle.styles.scss";
+import Switch from "../../../switch-button/Switch.component";
 
 const Subtitle = (props) => {
   const { handleBack, player } = props;
 
   const [subtitle, setSubtitle] = useState([]);
+  const [checked, setChecked] = useState(false);
 
   let tracks = player.textTracks();
 
@@ -21,6 +23,15 @@ const Subtitle = (props) => {
     });
 
     setSubtitle(newSubtitleArray);
+  };
+
+  const handleChangeSwitch = (newCheckValue) => {
+    setChecked(newCheckValue);
+    if (newCheckValue) {
+      handleSelectSubtitle("off");
+    } else {
+      handleSelectSubtitle("English");
+    }
   };
 
   useEffect(() => {
@@ -67,12 +78,19 @@ const Subtitle = (props) => {
                   item.selected ? "selected-subtitle" : ""
                 }`}
                 key={index}
-                onClick={() => handleSelectSubtitle(item.id)}
+                onClick={() => {
+                  setChecked(false);
+                  handleSelectSubtitle(item.id);
+                }}
               >
                 {item.label}
               </div>
             );
           })}
+      </div>
+      <div className="check-disable-subtitle-box">
+        <span className="title">Disable subtitle ?</span>
+        <Switch checked={checked} onChange={handleChangeSwitch} />
       </div>
     </React.Fragment>
   );

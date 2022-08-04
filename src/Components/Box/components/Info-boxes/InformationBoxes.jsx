@@ -1,6 +1,7 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 import InformationBox from "../../../info-box/InformationBox.component";
+import Switch from "../../../switch-button/Switch.component";
 
 const InformationBoxes = ({ handleSelect, handleClickBack, player }) => {
   // Detect selected Quality
