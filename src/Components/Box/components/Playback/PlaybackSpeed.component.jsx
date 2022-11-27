@@ -5,8 +5,6 @@ import "./playback.styles.scss";
 const PlaybackSpeed = (props) => {
   const [playBackSpeed, setPlayBackSpeed] = useState(1);
 
-  console.log({ playBackSpeed, playBackSpeedStep: playBackSpeed / 2 });
-
   return (
     <React.Fragment>
       <h3 className="playback-title">Playback Speed</h3>

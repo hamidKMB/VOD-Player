@@ -26,6 +26,7 @@ const InformationBox = (props) => {
 InformationBox.propTypes = {
   boxTitle: PropTypes.string,
   selectedValue: PropTypes.string,
+  onClickMore: PropTypes.func,
 };
 
 export default InformationBox;

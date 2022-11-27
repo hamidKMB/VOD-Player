@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../Styles/box.styles.scss";
+import Audios from "./components/Audios/Audios.component";
 import InformationBoxes from "./components/Info-boxes/InformationBoxes";
 import Qualities from "./components/qualities/Qualities.component";
 import Subtitle from "./components/subtitles/Subtitle.component";
@@ -24,9 +25,11 @@ const Box = (props) => {
         />
       ) : selected.boxTitle === "Qualities" ? (
         <Qualities player={player} handleBack={handleBack} />
+      ) : selected.boxTitle === "Subtitles" ? (
+        <Subtitle handleBack={handleBack} player={player} />
       ) : (
-        selected.boxTitle === "Subtitles" && (
-          <Subtitle handleBack={handleBack} player={player} />
+        selected.boxTitle === "Audios" && (
+          <Audios handleBack={handleBack} player={player} />
         )
       )}
     </div>

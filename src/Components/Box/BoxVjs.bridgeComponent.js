@@ -8,7 +8,6 @@ const VjsComponent = videojs.getComponent("Component");
 class BoxVjs extends VjsComponent {
   constructor(player, options) {
     super(player, options);
-    console.log(player, options);
     // Bind the current class context to the mountReactComponent method
     this.mountReactComponent = this.mountReactComponent.bind(this);
 

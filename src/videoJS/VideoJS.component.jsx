@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import videojs from "video.js";
-import PropTypes from "prop-types";
 import "video.js/dist/video-js.css";
+import "videojs-contrib-ads";
+import PropTypes from "prop-types";
 import "./video-js.style.scss";
 import "videojs-thumbnail-sprite";
 import "videojs-contrib-quality-levels";
@@ -33,9 +34,10 @@ const VideoJS = (props) => {
       let player = playerRef.current;
 
       player = videojs(videoElement, options, () => {
-        videojs.log("player is ready");
         onReady && onReady(player);
       });
+
+      player.ads();
 
       // Adding some New Buttons to Control bar
       let Button = videojs.getComponent("button");
@@ -102,6 +104,48 @@ const VideoJS = (props) => {
 
         player.getChild("ControlBar").addChild("PlaylistButton", {}, 3);
       }
+
+      player.on("playbackrateschange", (e) =>
+        console.log(e, "playBack rate Changed")
+      );
+
+      // Close Boxes After the ControlBar Disappeared
+      player.on("userinactive", () => {
+        if (isChildExist(player.getChild("controlBar").children_, "boxVjs")) {
+          player
+            .getChild("ControlBar")
+            .removeChild("boxVjs", { id: "boxVjs" }, 10);
+        }
+        if (
+          isChildExist(
+            player.getChild("controlBar").children_,
+            "playlistBoxVjs"
+          )
+        ) {
+          player.getChild("ControlBar").removeChild("playlistBoxVjs", {}, 8);
+        }
+      });
+
+      player.getChild("ControlBar").on("click", (e) => {
+        // IF USER CLICKED ON CONTROLBAR AND
+        // THE BOX WAS OPEN
+        // THEN THE BOX WILL CLOSED !
+        if (e.target.className.includes("vjs-control-bar")) {
+          if (isChildExist(player.getChild("controlBar").children_, "boxVjs")) {
+            player
+              .getChild("ControlBar")
+              .removeChild("boxVjs", { id: "boxVjs" }, 10);
+          }
+          if (
+            isChildExist(
+              player.getChild("controlBar").children_,
+              "playlistBoxVjs"
+            )
+          ) {
+            player.getChild("ControlBar").removeChild("playlistBoxVjs", {}, 8);
+          }
+        }
+      });
 
       let NextButton = videojs.extend(Button, {
         constructor: function (player, options) {
@@ -198,7 +242,6 @@ const VideoJS = (props) => {
       });
 
       player.qualityLevels();
-
       // player.({
       //   displayCurrentQuality: true,
       // });
@@ -232,19 +275,17 @@ const VideoJS = (props) => {
       //   player.autoplay(options.autoplay);
       //   player.src(options.sources);
     }
-  }, [options, videoRef, onReady]);
+  }, [options]);
 
   // Dispose the Video.js player when the functional component unmounts
   useEffect(() => {
-    const player = playerRef.current;
-
     return () => {
-      if (player) {
-        player.dispose();
+      if (playerRef.current) {
+        playerRef.current.dispose();
         playerRef.current = null;
       }
     };
-  }, [playerRef]);
+  }, []);
 
   return (
     <div data-vjs-player>

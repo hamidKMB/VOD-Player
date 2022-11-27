@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import VideoJS from "./videoJS/VideoJS.component";
+import "videojs-contrib-ads";
 import "./App.css";
 
 function App() {
@@ -32,10 +33,14 @@ function App() {
     ],
   };
 
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem("subSettings");
+    };
+  }, []);
+
   const handlePlayerReady = (player) => {
     playerRef.current = player;
-
-    console.dir(playerRef.current);
 
     // You can handle player events here, for example:
     player.on("waiting", () => {

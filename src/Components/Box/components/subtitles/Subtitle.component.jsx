@@ -2,15 +2,20 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "./subtitle.styles.scss";
 import Switch from "../../../switch-button/Switch.component";
+import Settings from "../../../../assets/icons/Setting.svg";
+import SubtitleSettings from "./SubtitleSettings";
 
 const Subtitle = (props) => {
   const { handleBack, player } = props;
 
+  /* --------------------------------- States --------------------------------- */
   const [subtitle, setSubtitle] = useState([]);
   const [checked, setChecked] = useState(false);
+  const [isSettingClicked, setIsSettingClicked] = useState(false);
 
   let tracks = player.textTracks();
 
+  /* -------------------------------- Functions ------------------------------- */
   const handleSelectSubtitle = (trackId) => {
     const newSubtitleArray = subtitle.map((item, index) => {
       let track = tracks[index];
@@ -34,6 +39,7 @@ const Subtitle = (props) => {
     }
   };
 
+  /* ------------------------------ Side Effects ------------------------------ */
   useEffect(() => {
     if (player) {
       const subtitleTracks = [];
@@ -62,11 +68,22 @@ const Subtitle = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
+  return isSettingClicked ? (
+    <SubtitleSettings
+      handleBack={() => setIsSettingClicked(false)}
+      player={player}
+    />
+  ) : (
     <React.Fragment>
       <div className="head-details">
         <span className="back-arrow" onClick={handleBack} />
         <h1>Subtitles/cc ({subtitle.length})</h1>
+        <div
+          className="setting-icon-holder"
+          onClick={() => setIsSettingClicked(true)}
+        >
+          <img src={Settings} alt={"setting"} />
+        </div>
       </div>
       <div className="subtitle-box-holder">
         {subtitle
