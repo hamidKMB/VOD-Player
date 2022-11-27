@@ -1,0 +1,72 @@
+.info-box-title{
+        font-weight: bold;
+        font-size: large;
+        flex-grow: 1;
+        padding-bottom: 5px;
+        margin: 10px 0;
+}
+
+.range-holder {
+         background: rgba(0, 0, 0, 0.32);
+         display: flex;
+         justify-content: center;
+         position: relative;
+         border-radius: 50px;
+         padding: 0 5px;
+}
+
+.range-selector {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 5px;
+}
+
+.custom-range-input{
+        width: 100%;
+       -webkit-appearance: none;
+        background: transparent;
+        /* background: red; */
+        outline: none; /* Remove outline */
+        -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+        transition: opacity .2s;
+        height: 1.01rem;
+}
+
+.custom-range-input::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  border-radius: 50%;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: gray; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.custom-range-input::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  border-radius: 50%;
+  background: gray; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.playback-label{
+        padding-top: 1rem;
+        position: relative;
+        width: 26px;
+        text-align: center;
+}
+
+.playback-label::after{
+        content: '';
+        display: block;
+        width: 2px;
+        height: 0.7rem;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: -14px
+}

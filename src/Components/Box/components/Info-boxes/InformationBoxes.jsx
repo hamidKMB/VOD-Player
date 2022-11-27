@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import InformationBox from "../../../info-box/InformationBox.component";
-import Switch from "../../../switch-button/Switch.component";
+import PlaybackSpeed from "../../../playback-speed/PlaybackSpeed";
 
 const InformationBoxes = ({ handleSelect, handleClickBack, player }) => {
   // Detect selected Quality
@@ -21,8 +21,23 @@ const InformationBoxes = ({ handleSelect, handleClickBack, player }) => {
     }
   }
 
+  // Detect Selected Audio
+  const selectedAudio = useRef(null);
+  const countOfAudios = player.audioTracks().tracks_.length;
+
+  for (let index = 0; index < countOfAudios; index++) {
+    const { label, enabled } = player.audioTracks()[index];
+
+    if (enabled) {
+      selectedAudio.current = label;
+    }
+  }
+
   return (
     <React.Fragment>
+      <div className="p-3 pb-2">
+        <PlaybackSpeed player={player} />
+      </div>
       <InformationBox
         boxTitle="Qualities"
         selectedValue={selectedQualityTitle}
@@ -33,6 +48,13 @@ const InformationBoxes = ({ handleSelect, handleClickBack, player }) => {
         selectedValue={selectedSubtitle.current}
         onClickMore={(selected) => handleSelect(selected)}
       />
+      {countOfAudios > 1 && (
+        <InformationBox
+          boxTitle="Audios"
+          selectedValue={selectedAudio.current}
+          onClickMore={(selected) => handleSelect(selected)}
+        />
+      )}
     </React.Fragment>
   );
 };
