@@ -37,8 +37,6 @@ const VideoJS = (props) => {
         onReady && onReady(player);
       });
 
-      player.ads();
-
       // Adding some New Buttons to Control bar
       let Button = videojs.getComponent("button");
       videojs.registerComponent("boxVjs", BoxVjs);
