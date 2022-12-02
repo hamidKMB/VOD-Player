@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { Fragment, useEffect, useRef } from "react";
 import VideoJS from "./videoJS/VideoJS.component";
 import "videojs-contrib-ads";
 import "./App.css";
@@ -53,7 +53,7 @@ function App() {
   };
 
   return (
-    <div style={{ minHeight: "100vh", position: "relative" }}>
+    <div style={{ display: "flex", flexGrow: 1, flexDirection: "column" }}>
       <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
     </div>
   );
