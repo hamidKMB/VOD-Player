@@ -10,7 +10,7 @@ function App() {
     autoplay: true,
     controls: true,
     responsive: true,
-    fluid: true,
+    // fluid: true,
     bigPlayButton: false,
     controlBar: {
       children: [
