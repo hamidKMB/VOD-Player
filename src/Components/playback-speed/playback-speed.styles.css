@@ -1,9 +1,11 @@
+@import '../../App.css';
+
 .info-box-title{
         font-weight: bold;
         font-size: large;
         flex-grow: 1;
-        padding-bottom: 5px;
-        margin: 10px 0;
+        padding-bottom: 1rem;
+        margin: 0;
 }
 
 .range-holder {
@@ -12,18 +14,10 @@
          justify-content: center;
          position: relative;
          border-radius: 50px;
-         padding: 0 5px;
-}
-
-.range-selector {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 0 5px;
+         /* padding: 0 5rem; */
 }
 
 .custom-range-input{
-        width: 100%;
        -webkit-appearance: none;
         background: transparent;
         /* background: red; */
@@ -31,6 +25,8 @@
         -webkit-transition: .2s; /* 0.2 seconds transition on hover */
         transition: opacity .2s;
         height: 1.01rem;
+        width: 100%;
+        padding: 0 2rem;
 }
 
 .custom-range-input::-webkit-slider-thumb {
@@ -39,7 +35,7 @@
   border-radius: 50%;
   width: 25px; /* Set a specific slider handle width */
   height: 25px; /* Slider handle height */
-  background: gray; /* Green background */
+  background: var(--vod-light-palceholder-text-gery); /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
 
@@ -47,8 +43,15 @@
   width: 25px; /* Set a specific slider handle width */
   height: 25px; /* Slider handle height */
   border-radius: 50%;
-  background: gray; /* Green background */
+  background: var(--vod-light-palceholder-text-gery); /* Green background */
   cursor: pointer; /* Cursor on hover */
+}
+
+.range-selector {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 2rem;
 }
 
 .playback-label{
@@ -56,6 +59,7 @@
         position: relative;
         width: 26px;
         text-align: center;
+        margin-bottom: 1rem;
 }
 
 .playback-label::after{
