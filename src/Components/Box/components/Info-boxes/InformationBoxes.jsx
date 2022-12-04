@@ -6,9 +6,12 @@ import PlaybackSpeed from "../../../playback-speed/PlaybackSpeed";
 const InformationBoxes = ({ handleSelect, handleClickBack, player }) => {
   // Detect selected Quality
   const selectedQualityIndex = player.qualityLevels().selectedIndex_;
-  const selectedQualityTitle = `${
+  const isAuto = Boolean(
     player.qualityLevels().levels_[selectedQualityIndex]?.height
-  }p`;
+  );
+  const selectedQualityTitle = isAuto
+    ? `${player.qualityLevels().levels_[selectedQualityIndex]?.height}p`
+    : "Auto";
 
   // Detect selected subtitle
   const selectedSubtitle = useRef(null);
@@ -40,7 +43,9 @@ const InformationBoxes = ({ handleSelect, handleClickBack, player }) => {
       </div>
       <InformationBox
         boxTitle="Qualities"
-        selectedValue={selectedQualityTitle}
+        selectedValue={
+          player.state.isAutoQuality ? "Auto" : selectedQualityTitle
+        }
         onClickMore={(selected) => handleSelect(selected)}
       />
       <InformationBox
