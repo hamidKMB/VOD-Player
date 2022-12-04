@@ -170,8 +170,8 @@ $borderRadious: 94px;
             background-image: url('../assets/icons/ff.svg');
             display: flex;
             align-self: center;
-            flex: 1 1 50px;
-            order: 7;
+            flex: 1 1 content;
+            order: 5;
             transform: translateX(-100%);
         }
 
@@ -179,7 +179,7 @@ $borderRadious: 94px;
             background-image: url('../assets/icons/bb.svg');
             display: flex;
             align-self: center;
-            flex: 1 1 50px;
+            flex: 1 1 content;
             order: 3;
             transform: translateX(100%);
         }
@@ -190,7 +190,7 @@ $borderRadious: 94px;
             display: flex;
             align-self: flex-end;
             flex: 0 0 auto;
-            order: 9;
+            order: 6;
             margin-bottom: 1rem;
             height: 27px;
             .vjs-icon-placeholder {
@@ -325,7 +325,7 @@ $borderRadious: 94px;
             align-self: center;
             justify-content: center;
             flex: 2 0 50px;
-            order: 5;
+            order: 4;
             
             .vjs-icon-placeholder {
                 left: 50%;
