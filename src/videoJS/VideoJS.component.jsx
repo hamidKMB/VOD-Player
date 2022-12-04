@@ -13,6 +13,12 @@ const VideoJS = (props) => {
   /* ---------------------------------- Props --------------------------------- */
   const { options, onReady } = props;
 
+  const playerButtonsShow = {
+    next: false,
+    previous: false,
+    playlist: false,
+  };
+
   /* ---------------------------------- Refs ---------------------------------- */
 
   const videoRef = useRef(null);
@@ -101,7 +107,8 @@ const VideoJS = (props) => {
 
       if (
         player.getChild("controlBar").children_[3].options_.name !==
-        "PlaylistButton"
+          "PlaylistButton" &&
+        playerButtonsShow.playlist
       ) {
         videojs.registerComponent("PlaylistButton", PlaylistButton);
 
@@ -165,7 +172,8 @@ const VideoJS = (props) => {
 
       if (
         player.getChild("controlBar").children_[4].options_.name !==
-        "NextButton"
+          "NextButton" &&
+        playerButtonsShow.next
       ) {
         videojs.registerComponent("NextButton", NextButton);
 
@@ -185,7 +193,8 @@ const VideoJS = (props) => {
 
       if (
         player.getChild("controlBar").children_[5].options_.name !==
-        "PreviousButton"
+          "PreviousButton" &&
+        playerButtonsShow.previous
       ) {
         videojs.registerComponent("PreviousButton", PreviousButton);
 
@@ -245,39 +254,32 @@ const VideoJS = (props) => {
       });
 
       player.qualityLevels();
-      // player.({
-      //   displayCurrentQuality: true,
-      // });
+
+      console.log(player);
 
       // handle keyboard shortcuts
-      //TODO: Fix the Shortcuts
-      // player.on("keydown", (event) => {
-      //   console.log(event.key);
-      //   if (event.key === " ") {
-      //     //toggle play/pause
-      //     player.paused() ? player.play() : player.pause();
-      //   }
-      //   if (event.key === "ArrowLeft") {
-      //     player.currentTime(player.currentTime() - 15);
-      //   }
-      //   if (event.key === "ArrowRight") {
-      //     player.currentTime(player.currentTime() + 15);
-      //   }
-      //   if (event.key === "ArrowUp") {
-      //     player.volume(player.volume() + 0.1);
-      //   }
-      //   if (event.key === "ArrowDown") {
-      //     player.volume(player.volume() - 0.1);
-      //   }
-      // });
-
-      // You could update an existing player in the `else` block here
-      // on prop change, for example:
-    } else {
-      //   const player = playerRef.current;
-      //   player.autoplay(options.autoplay);
-      //   player.src(options.sources);
+      player.on("keyup", (event) => {
+        console.log({ key: event.key, event });
+        if (event.code === "Space") {
+          //toggle play/pause
+          console.log(player.paused());
+          player.paused() ? player.play() : player.pause();
+        }
+        if (event.key === "ArrowLeft") {
+          player.currentTime(player.currentTime() - 15);
+        }
+        if (event.key === "ArrowRight") {
+          player.currentTime(player.currentTime() + 30);
+        }
+        if (event.key === "ArrowUp") {
+          player.volume(player.volume() + 0.1);
+        }
+        if (event.key === "ArrowDown") {
+          player.volume(player.volume() - 0.1);
+        }
+      });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options]);
 
   // Dispose the Video.js player when the functional component unmounts
