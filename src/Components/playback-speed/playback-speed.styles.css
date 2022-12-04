@@ -1,6 +1,10 @@
 @import '../../App.css';
 
-.info-box-title{
+.playback-speed-holder {
+        padding: .8rem .8rem 0;
+}
+
+.playback-speed-holder .info-box-title{
         font-weight: bold;
         font-size: large;
         flex-grow: 1;
