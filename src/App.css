@@ -4,3 +4,23 @@
     flex-grow: 1;
     height: 100vh;
 }
+
+:root {
+    --vod-bg-color: #171414;
+    --vod-primary-color: #EB0202;
+    --vod-second-color: #960000;
+    --vod-comment-box-bg: #2B2828;
+    --vod-primary-bg-color: rgba(255, 255, 255, 0.1);
+    --vod-light-grey-bg-color: #F8F8F8;
+    --vod-light-palceholder-text-gery: #D8D8D8;
+    --vod-error-text-color: #FBC7C7;
+    --vod-register-color:  #518EF8;
+    --vod-available-color: #4CDD6B;
+    --vod-disabled-color: #929292;
+    --vod-bullet-color: #595252;
+    --vod-device-bg: #3B3838;
+    --vod-text-color: #D9D9D9;
+    --vod-disabled-input: #AAAAAA;
+    --vod-filter-slide:  #454242;
+    --vod-gradiant-bg: linear-gradient(46deg, #960000 14.64%, #EF0000 85.36%);
+}
