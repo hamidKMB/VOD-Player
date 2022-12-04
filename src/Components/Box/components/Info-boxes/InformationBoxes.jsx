@@ -7,7 +7,7 @@ const InformationBoxes = ({ handleSelect, handleClickBack, player }) => {
   // Detect selected Quality
   const selectedQualityIndex = player.qualityLevels().selectedIndex_;
   const selectedQualityTitle = `${
-    player.qualityLevels().levels_[selectedQualityIndex].height
+    player.qualityLevels().levels_[selectedQualityIndex]?.height
   }p`;
 
   // Detect selected subtitle

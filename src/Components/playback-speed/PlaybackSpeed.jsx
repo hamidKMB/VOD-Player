@@ -19,7 +19,7 @@ const PlaybackSpeed = (props) => {
   }, [playbackSpeed]);
 
   return (
-    <div style={{ padding: ".8rem .8rem 0" }}>
+    <div className="playback-speed-holder">
       <h6 className="info-box-title">Playback Speed</h6>
       <div className="range-holder ">
         <input
