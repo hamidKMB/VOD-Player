@@ -37,6 +37,11 @@ const VideoJS = (props) => {
         onReady && onReady(player);
       });
 
+      player.setState((prev) => ({
+        ...prev,
+        isAutoQuality: true,
+      }));
+
       // Adding some New Buttons to Control bar
       let Button = videojs.getComponent("button");
       videojs.registerComponent("boxVjs", BoxVjs);

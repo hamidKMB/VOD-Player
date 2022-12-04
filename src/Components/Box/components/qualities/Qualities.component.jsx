@@ -6,19 +6,40 @@ const Qualities = (props) => {
   const { player, handleBack } = props;
 
   const [qualities, setQualities] = useState([]);
+  const isAutoSelected = player.state.isAutoQuality;
 
   const handleSelectQuality = (selectedQualityIndex, selectedQualityId) => {
+    player.setState((prev) => ({
+      ...prev,
+      isAutoQuality: selectedQualityIndex === "auto",
+    }));
+
     setQualities(
       qualities.map((item) => ({
         ...item,
-        selected: item.id === selectedQualityId,
+        selected:
+          selectedQualityIndex === "auto"
+            ? false
+            : item.id === selectedQualityId,
       }))
     );
 
-    player.qualityLevels().selectedIndex_ = selectedQualityIndex;
-    player
-      .qualityLevels()
-      .trigger({ type: "change", selectedIndex: selectedQualityIndex });
+    player.qualityLevels().selectedIndex_ =
+      selectedQualityIndex === "auto" ? -1 : selectedQualityIndex;
+
+    player.qualityLevels().trigger({
+      type: "change",
+      selectedIndex:
+        selectedQualityIndex === "auto" ? -1 : selectedQualityIndex,
+    });
+
+    player?.tech_?.vhs?.representations().forEach((rep, idx) => {
+      if (selectedQualityIndex === "auto") {
+        rep.enabled(true);
+      } else {
+        rep.enabled(idx === selectedQualityIndex);
+      }
+    });
   };
 
   useEffect(() => {
@@ -26,7 +47,9 @@ const Qualities = (props) => {
       setQualities(
         player.qualityLevels().levels_.map((item, index) => ({
           ...item,
-          selected: index === player.qualityLevels().selectedIndex_,
+          selected: isAutoSelected
+            ? false
+            : index === player.qualityLevels().selectedIndex_,
         }))
       );
     }
@@ -53,6 +76,14 @@ const Qualities = (props) => {
             </div>
           );
         })}
+        <div
+          className={`qualities-box ${
+            isAutoSelected ? "selected-quality" : ""
+          }`}
+          onClick={() => handleSelectQuality("auto")}
+        >
+          Auto
+        </div>
       </div>
     </div>
   );
