@@ -1,12 +1,22 @@
-import React, { Fragment, useEffect, useRef } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import VideoJS from "./videoJS/VideoJS.component";
 import "videojs-contrib-ads";
 import "./App.css";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getContentDetail } from "./Redux/Player/playerSlice";
+import getContentDetails, { getContentSrc } from "./API/contentApi";
+import { isIOS } from "react-device-detect";
 
 function App() {
   const playerRef = useRef(null);
+  const { streamUrl } = useParams();
+  const dispatch = useDispatch();
 
-  const videoJsOptions = {
+  /* --------------------------------- States --------------------------------- */
+  const [playerDetails, setPlayerDetails] = useState(null);
+  const [streamDetail, setStreamDetail] = useState(null);
+  const [videoJsOptions, setVideoJsOptions] = useState({
     autoplay: true,
     controls: true,
     responsive: true,
@@ -25,20 +35,15 @@ function App() {
         // "liveDisplay",
       ],
     },
-    sources: [
-      {
-        src: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8",
-        // type: "video/mp4",
+    sources: null,
+    html5: {
+      dash: {
+        setFastSwitchEnabled: true,
       },
-    ],
-  };
+    },
+  });
 
-  useEffect(() => {
-    return () => {
-      localStorage.removeItem("subSettings");
-    };
-  }, []);
-
+  /* -------------------------------- Functions ------------------------------- */
   const handlePlayerReady = (player) => {
     playerRef.current = player;
 
@@ -52,9 +57,61 @@ function App() {
     });
   };
 
+  /* ------------------------------ Side Effects ------------------------------ */
+
+  useEffect(() => {
+    getContentDetails(streamUrl)
+      .then((res) => {
+        setPlayerDetails(res.data.result);
+        dispatch(getContentDetail(res.data.result));
+        getContentSrc(streamUrl)
+          .then((res) => {
+            setStreamDetail(res.data.result);
+            if (isIOS) {
+              setVideoJsOptions((prev) => ({
+                ...prev,
+                sources: [
+                  {
+                    src: res.data.result.mp4,
+                    type: "video/mp4",
+                  },
+                ],
+              }));
+            } else {
+              setVideoJsOptions((prev) => ({
+                ...prev,
+                sources: [
+                  {
+                    src: res.data.result.hls,
+                    // src: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8",
+                    type: "application/x-mpegURL",
+                  },
+                ],
+              }));
+            }
+          })
+          .catch((err) => err);
+      })
+      .catch((err) => err);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem("subSettings");
+    };
+  }, []);
+
   return (
     <div style={{ display: "flex", flexGrow: 1, flexDirection: "column" }}>
-      <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
+      {videoJsOptions.sources && streamDetail && (
+        <VideoJS
+          options={videoJsOptions}
+          onReady={handlePlayerReady}
+          videoDetails={playerDetails}
+          streamDetail={streamDetail}
+        />
+      )}
     </div>
   );
 }

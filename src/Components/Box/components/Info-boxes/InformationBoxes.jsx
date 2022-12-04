@@ -48,11 +48,13 @@ const InformationBoxes = ({ handleSelect, handleClickBack, player }) => {
         }
         onClickMore={(selected) => handleSelect(selected)}
       />
-      <InformationBox
-        boxTitle="Subtitles"
-        selectedValue={selectedSubtitle.current}
-        onClickMore={(selected) => handleSelect(selected)}
-      />
+      {player.textTracks().tracks_.length > 1 ? (
+        <InformationBox
+          boxTitle="Subtitles"
+          selectedValue={selectedSubtitle.current}
+          onClickMore={(selected) => handleSelect(selected)}
+        />
+      ) : null}
       {countOfAudios > 1 && (
         <InformationBox
           boxTitle="Audios"
