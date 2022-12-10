@@ -255,8 +255,6 @@ const VideoJS = (props) => {
 
       player.qualityLevels();
 
-      console.log(player);
-
       // handle keyboard shortcuts
       player.on("keyup", (event) => {
         console.log({ key: event.key, event });

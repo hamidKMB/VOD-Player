@@ -75,8 +75,27 @@ function PlayerByLink() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    let vh = window.innerHeight;
+    document.documentElement.style.setProperty("--width", vh + "px");
+
+    window.addEventListener("orientationchange", (e) => {
+      if (e.currentTarget.orientation === 0) {
+        vh = window.innerHeight;
+      }
+
+      document.documentElement.style.setProperty("--width", vh + "px");
+    });
+  }, []);
+
   return (
-    <div style={{ display: "flex", flexGrow: 1, flexDirection: "column" }}>
+    <div
+      style={{
+        display: "flex",
+        flexGrow: 1,
+        flexDirection: "column",
+      }}
+    >
       {videoJsOptions.sources && (
         <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
       )}

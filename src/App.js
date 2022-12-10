@@ -97,6 +97,19 @@ function AppV() {
   }, []);
 
   useEffect(() => {
+    let vh = window.innerHeight;
+    document.documentElement.style.setProperty("--width", vh + "px");
+
+    window.addEventListener("orientationchange", (e) => {
+      if (e.currentTarget.orientation === 0) {
+        vh = window.innerHeight;
+      }
+
+      document.documentElement.style.setProperty("--width", vh + "px");
+    });
+  }, []);
+
+  useEffect(() => {
     return () => {
       localStorage.removeItem("subSettings");
     };

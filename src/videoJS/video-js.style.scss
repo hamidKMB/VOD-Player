@@ -474,16 +474,21 @@ $borderRadious: 94px;
     .vjs-matrix, .vjs-matrix.vjs-fullscreen{
         transform: rotate(-90deg);
         transform-origin: left top;
-        width: 100vh !important;
+        width: var(--width) ;
+        // width: calc(var(--vh, 1vh) * 100);
         height: 100vw !important;
         overflow-x: hidden;
         position: absolute;
         top: 100%;
         left: 0;
+        overflow: hidden;
     }
 }
 
 @media screen and (max-width: 900px) {
+    html{
+        overflow: hidden
+    }
     .vjs-matrix{
         .vjs-control-bar{
             .vjs-next-button{
@@ -494,13 +499,6 @@ $borderRadious: 94px;
                 transform: none;
             }
     
-            .vjs-fast-forward-button{
-                transform: none;
-            }
-    
-            .vjs-fast-rewind-button{
-                transform: none;
-            }
         }
 
     }
