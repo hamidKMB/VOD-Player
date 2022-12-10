@@ -8,7 +8,7 @@ import { getContentDetail } from "./Redux/Player/playerSlice";
 import getContentDetails, { getContentSrc } from "./API/contentApi";
 import { isIOS } from "react-device-detect";
 
-function App() {
+function AppV() {
   const playerRef = useRef(null);
   const { streamUrl } = useParams();
   const dispatch = useDispatch();
@@ -116,4 +116,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppV;
