@@ -242,16 +242,16 @@ const VideoJS = (props) => {
       }
 
       // Adding Plugins
-      player.thumbnailSprite({
-        sprites: [
-          {
-            url: "https://static.cdn.asset.filimo.com/filimo-video/85779-thumb-t01.jpg",
-            start: 0,
-            duration: 1000,
-            interval: 10,
-          },
-        ],
-      });
+      // player.thumbnailSprite({
+      //   sprites: [
+      //     {
+      //       url: "https://static.cdn.asset.filimo.com/filimo-video/85779-thumb-t01.jpg",
+      //       start: 0,
+      //       duration: 1000,
+      //       interval: 10,
+      //     },
+      //   ],
+      // });
 
       player.qualityLevels();
 
