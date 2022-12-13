@@ -9,6 +9,7 @@ const InformationBoxes = ({ handleSelect, handleClickBack, player }) => {
   const isAuto = Boolean(
     player.qualityLevels().levels_[selectedQualityIndex]?.height
   );
+
   const selectedQualityTitle = isAuto
     ? `${player.qualityLevels().levels_[selectedQualityIndex]?.height}p`
     : "Auto";
@@ -41,13 +42,15 @@ const InformationBoxes = ({ handleSelect, handleClickBack, player }) => {
       <div className="p-3 pb-2">
         <PlaybackSpeed player={player} />
       </div>
-      <InformationBox
-        boxTitle="Qualities"
-        selectedValue={
-          player.state.isAutoQuality ? "Auto" : selectedQualityTitle
-        }
-        onClickMore={(selected) => handleSelect(selected)}
-      />
+      {player.qualityLevels().length ? (
+        <InformationBox
+          boxTitle="Qualities"
+          selectedValue={
+            player.state.isAutoQuality ? "Auto" : selectedQualityTitle
+          }
+          onClickMore={(selected) => handleSelect(selected)}
+        />
+      ) : null}
       {player.textTracks().tracks_.length > 1 ? (
         <InformationBox
           boxTitle="Subtitles"

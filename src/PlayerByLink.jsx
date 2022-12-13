@@ -79,10 +79,8 @@ function PlayerByLink() {
     let vh = window.innerHeight;
     document.documentElement.style.setProperty("--width", vh + "px");
 
-    window.addEventListener("orientationchange", (e) => {
-      if (e.currentTarget.orientation === 0) {
-        vh = window.innerHeight;
-      }
+    window.addEventListener("resize", (e) => {
+      vh = window.innerHeight;
 
       document.documentElement.style.setProperty("--width", vh + "px");
     });
