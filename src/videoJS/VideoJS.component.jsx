@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import "./video-js.style.scss";
 import "videojs-thumbnail-sprite";
 import "videojs-contrib-quality-levels";
+import "videojs-landscape-fullscreen";
 import BoxVjs from "../Components/Box/BoxVjs.bridgeComponent";
 import PlaylistVjsBox from "../Components/Playlist-box/PlaylistVjs.bridge";
 
@@ -47,6 +48,13 @@ const VideoJS = (props) => {
         ...prev,
         isAutoQuality: true,
       }));
+
+      player.landscapeFullscreen({
+        fullscreen: {
+          enterOnRotate: true,
+          alwaysInLandscapeMode: true,
+        },
+      });
 
       // Adding some New Buttons to Control bar
       let Button = videojs.getComponent("button");
@@ -114,10 +122,6 @@ const VideoJS = (props) => {
 
         player.getChild("ControlBar").addChild("PlaylistButton", {}, 3);
       }
-
-      player.on("playbackrateschange", (e) =>
-        console.log(e, "playBack rate Changed")
-      );
 
       // Close Boxes After the ControlBar Disappeared
       player.on("userinactive", () => {

@@ -24,11 +24,6 @@ $borderRadious: 94px;
     }
 }
 
-// .player-holder{
-//     width: 100vw;
-//     height: 100vh;
-// }
-
 .vjs-matrix {
     height: 100%;
     width: 100%;
@@ -480,9 +475,16 @@ $borderRadious: 94px;
         position: absolute;
         top: 100%;
         left: 0;
-        overflow-x: hidden;
         overflow: hidden;
     }
+}
+
+@media screen and ( orientation: landscape ) {
+    
+       .vjs-matrix, .vjs-matrix.vjs-fullscreen {
+            height: var(--width)
+       }
+   
 }
 
 @media screen and (max-width: 900px) {
