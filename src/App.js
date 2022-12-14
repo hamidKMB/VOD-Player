@@ -17,7 +17,7 @@ function AppV() {
   const [playerDetails, setPlayerDetails] = useState(null);
   const [streamDetail, setStreamDetail] = useState(null);
   const [videoJsOptions, setVideoJsOptions] = useState({
-    autoplay: true,
+    autoplay: "any",
     controls: true,
     responsive: true,
     // fluid: true,
@@ -116,7 +116,15 @@ function AppV() {
   }, []);
 
   return (
-    <div style={{ display: "flex", flexGrow: 1, flexDirection: "column" }}>
+    <div
+      style={{
+        display: "flex",
+        flexGrow: 1,
+        flexDirection: "column",
+        position: "relative",
+        zIndex: 0,
+      }}
+    >
       {videoJsOptions.sources && streamDetail && (
         <VideoJS
           options={videoJsOptions}

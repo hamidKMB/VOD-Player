@@ -28,11 +28,16 @@ $borderRadious: 94px;
     height: 100%;
     width: 100%;
     position: relative;
-    
+    background-color: rgba( 0,0,0 ,0);
     &:focus {
         &:not(:focus-visible) {
             outline: 0
         }
+    }
+
+    .vjs-tech{
+        position: relative;
+        z-index: -1;
     }
 
     .vjs-skip-button {
@@ -102,10 +107,13 @@ $borderRadious: 94px;
 
     .vjs-control-bar {
         height: 10.85rem;
+        //TODO: Change Background
         background: rgba(0, 0, 0, 0.7);
+        // background: red;
         display: flex;
         align-items: center;
         position: absolute;
+        z-index: 9999;
         padding-top: 3rem;
         .vjs-control{
             height: fit-content;
@@ -480,11 +488,9 @@ $borderRadious: 94px;
 }
 
 @media screen and ( orientation: landscape ) {
-    
        .vjs-matrix, .vjs-matrix.vjs-fullscreen {
             height: var(--width)
        }
-   
 }
 
 @media screen and (max-width: 900px) {

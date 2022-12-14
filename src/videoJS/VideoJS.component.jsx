@@ -53,6 +53,7 @@ const VideoJS = (props) => {
         fullscreen: {
           enterOnRotate: true,
           alwaysInLandscapeMode: true,
+          IOS: false,
         },
       });
 
@@ -299,6 +300,7 @@ const VideoJS = (props) => {
       <video
         ref={videoRef}
         className="video-js vjs-matrix vjs-big-play-centered"
+        playsInline
       />
     </div>
   );

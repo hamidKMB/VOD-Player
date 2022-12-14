@@ -1,9 +1,9 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import VideoJS from "./videoJS/VideoJS.component";
 import "videojs-contrib-ads";
 import "./App.css";
-import { useLocation, useParams, useSearchParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { isIOS } from "react-device-detect";
 
 function PlayerByLink() {
   const playerRef = useRef(null);
@@ -94,11 +94,17 @@ function PlayerByLink() {
         flexDirection: "column",
       }}
     >
-      {videoJsOptions.sources && (
+      {videoJsOptions.sources ? (
         <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
-      )}
+      ) : null}
     </div>
   );
 }
 
 export default PlayerByLink;
+
+// isIOS ? (
+//         <video controls autoPlay>
+//           <source src={link} type="application/x-mpegURL" />
+//         </video>
+//       ) :
