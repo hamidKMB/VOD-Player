@@ -7,17 +7,17 @@ const InformationBox = (props) => {
   const { boxTitle, selectedValue, onClickMore } = props;
 
   return (
-    <div className="info-box-holder">
+    <div
+      className="info-box-holder"
+      onClick={() => onClickMore({ selectedValue, boxTitle })}
+    >
       <span className="info-box-title">{boxTitle}</span>
       <div
         className="info-box-selected-value"
         onClick={() => onClickMore({ selectedValue, boxTitle })}
       >
         {selectedValue}
-        <div
-          className="info-box-arrow-right"
-          onClick={() => onClickMore({ selectedValue, boxTitle })}
-        />
+        <div className="info-box-arrow-right" />
       </div>
     </div>
   );
