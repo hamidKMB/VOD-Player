@@ -100,10 +100,8 @@ function AppV() {
     let vh = window.innerHeight;
     document.documentElement.style.setProperty("--width", vh + "px");
 
-    window.addEventListener("orientationchange", (e) => {
-      if (e.currentTarget.orientation === 0) {
-        vh = window.innerHeight;
-      }
+    window.addEventListener("resize", (e) => {
+      vh = window.innerHeight;
 
       document.documentElement.style.setProperty("--width", vh + "px");
     });
@@ -121,8 +119,6 @@ function AppV() {
         display: "flex",
         flexGrow: 1,
         flexDirection: "column",
-        position: "relative",
-        zIndex: 0,
       }}
     >
       {videoJsOptions.sources && streamDetail && (
