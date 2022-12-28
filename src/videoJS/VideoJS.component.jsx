@@ -53,7 +53,7 @@ const VideoJS = (props) => {
         fullscreen: {
           enterOnRotate: true,
           alwaysInLandscapeMode: true,
-          IOS: false,
+          IOS: true,
         },
       });
 
